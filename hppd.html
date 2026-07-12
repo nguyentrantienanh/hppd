@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎉 Chúc Mừng Sinh Nhật Chị Như 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,600;1,700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Quicksand', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f0c20 0%, #15102a 40%, #201435 80%, #2d123d 100%);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Sparkling background elements */
+  .stars {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 1px, transparent 1px),
+      radial-gradient(circle at 75% 40%, rgba(255,255,255,0.1) 1px, transparent 1px),
+      radial-gradient(circle at 50% 80%, rgba(255,255,255,0.06) 1.5px, transparent 1.5px),
+      radial-gradient(circle at 10% 85%, rgba(255,255,255,0.09) 1px, transparent 1px),
+      radial-gradient(circle at 90% 15%, rgba(255,255,255,0.07) 2px, transparent 2px);
+    background-size: 100% 100%;
+    z-index: 0;
+  }
+
+  .floating-element {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    animation: floatUp 8s linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(105vh) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.35; }
+    90% { opacity: 0.35; }
+    100% { transform: translateY(-10vh) translateX(50px) rotate(360deg); opacity: 0; }
+  }
+
+  /* Layout selectors */
+  .desktop-card { display: block; }
+  .mobile-card { display: none; }
+
+  /* ---------------- DESKTOP BOOKLET STYLES ---------------- */
+  .desktop-card .card-container {
+    position: relative;
+    width: 660px;
+    height: 440px;
+    perspective: 2000px;
+    z-index: 10;
+  }
+
+  .desktop-card .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-25%) rotateY(0deg);
+  }
+
+  .desktop-card .card.open {
+    transform: translateX(0) rotateY(0deg);
+  }
+
+  .desktop-card .panel {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    background-color: #fffdf9;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  }
+
+  .desktop-card .inside-left {
+    width: 50%;
+    left: 0;
+    border-radius: 16px 0 0 16px;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1;
+    background: radial-gradient(circle at center, #ffffff 0%, #fffdf4 100%);
+  }
+
+  .desktop-card .inside-right-desktop {
+    width: 50%;
+    left: 50%;
+    border-radius: 0 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 24px 24px 24px;
+    z-index: 2;
+    background: radial-gradient(circle at center, #ffffff 0%, #fffdf4 100%);
+    overflow: hidden;
+  }
+
+  .desktop-card .cover-page {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+    cursor: pointer;
+  }
+
+  .desktop-card .card.open .cover-page {
+    transform: rotateY(-180deg);
+  }
+
+  .desktop-card .cover-front, .desktop-card .cover-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+  }
+
+  .desktop-card .cover-front {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #fe91ca 100%);
+    border-radius: 0 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border: 4px double rgba(255, 215, 0, 0.6);
+    box-shadow: inset 0 0 30px rgba(255,255,255,0.25);
+    transform: translateZ(1px);
+  }
+
+  .desktop-card .cover-front::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  .desktop-card .cover-back {
+    transform: rotateY(180deg) translateZ(1px);
+    border-radius: 16px 0 0 16px;
+    background: radial-gradient(circle at center, #ffffff 0%, #fffdf4 100%);
+    box-shadow: -15px 15px 35px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /* ---------------- MOBILE FLIP CARD STYLES ---------------- */
+  .mobile-card .card-container-mobile {
+    position: relative;
+    width: 340px;
+    height: 520px;
+    perspective: 1500px;
+    z-index: 10;
+  }
+
+  .mobile-card .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .mobile-card .card.open {
+    transform: rotateY(180deg);
+  }
+
+  .mobile-card .cover-front-mobile, .mobile-card .inside-mobile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  }
+
+  .mobile-card .cover-front-mobile {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #fe91ca 100%);
+    border: 4px double rgba(255, 215, 0, 0.6);
+    box-shadow: inset 0 0 30px rgba(255,255,255,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 2;
+    transform: translateZ(1px);
+  }
+
+  .mobile-card .cover-front-mobile::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  .mobile-card .inside-mobile {
+    background: radial-gradient(circle at center, #ffffff 0%, #fffdf4 100%);
+    transform: rotateY(180deg) translateZ(1px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* ---------------- GENERAL INTERIOR COMPONENTS ---------------- */
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    margin-bottom: 5px;
+  }
+
+  .recipient-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #ffd700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 25px;
+  }
+
+  .wax-seal {
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, #e62243 0%, #b30c25 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.4), 0 8px 16px rgba(0,0,0,0.3);
+    border: 3px solid #ff4d6d;
+    cursor: pointer;
+    position: relative;
+    animation: heartBeat 2s infinite;
+    transition: transform 0.3s ease;
+  }
+
+  .wax-seal:hover {
+    transform: scale(1.08);
+  }
+
+  .heart-seal {
+    font-size: 2.4rem;
+    color: #fff;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.06); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.06); }
+    60% { transform: scale(1); }
+  }
+
+  .click-hint {
+    margin-top: 30px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .polaroid {
+    background: #ffffff;
+    padding: 12px 12px 35px 12px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    transform: rotate(-4deg);
+    position: relative;
+    width: 240px;
+    transition: transform 0.6s ease;
+  }
+
+  .polaroid:hover {
+    transform: rotate(1deg) scale(1.04);
+  }
+
+  .polaroid::before {
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: 30%;
+    width: 90px;
+    height: 25px;
+    background-color: rgba(253, 241, 192, 0.6);
+    backdrop-filter: blur(2px);
+    transform: rotate(-6deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-left: 2px dashed rgba(0,0,0,0.1);
+    border-right: 2px dashed rgba(0,0,0,0.1);
+  }
+
+  .polaroid img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 2px;
+    border: 1px solid #eee;
+  }
+
+  .polaroid-caption {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: #4a3728;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 700;
+  }
+
+  .mobile-card .polaroid {
+    width: 200px;
+    padding: 10px 10px 25px 10px;
+    margin: 15px auto;
+  }
+  .mobile-card .polaroid img {
+    height: 160px;
+  }
+
+  .inside-header { margin-bottom: 12px; }
+  .inside-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    color: #c92a2a;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 2px dashed #ffe3e3;
+    padding-bottom: 8px;
+  }
+
+  .wishes-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-bottom: 15px;
+  }
+
+  .wishes-content::-webkit-scrollbar { width: 4px; }
+  .wishes-content::-webkit-scrollbar-thumb {
+    background-color: #ffd8a8;
+    border-radius: 10px;
+  }
+
+  .wish-para {
+    font-size: 0.9rem;
+    color: #495057;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    text-align: justify;
+    font-weight: 500;
+  }
+
+  .signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.35rem;
+    color: #e8590c;
+    text-align: right;
+    margin-top: 5px;
+    font-weight: 700;
+  }
+
+  .actions-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    height: 45px;
+    position: relative;
+  }
+
+  .action-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+  }
+
+  .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  .love-btn-style {
+    background: linear-gradient(135deg, #ff6b8b 0%, #ff8da1 100%);
+    color: #fff;
+  }
+
+  .dodge-btn-style {
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    transition: left 0.1s ease, top 0.1s ease, transform 0.2s ease;
+  }
+
+  .hint {
+    position: absolute;
+    bottom: -60px;
+    width: 100%;
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    letter-spacing: 1px;
+    animation: pulseHint 2s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pulseHint {
+    0%, 100% { opacity: 0.6; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-5px); }
+  }
+
+  .mobile-card .hint {
+    bottom: -50px;
+    font-size: 0.85rem;
+  }
+
+  .confetti {
+    position: fixed;
+    top: -20px;
+    font-size: 1.5rem;
+    animation: fall linear forwards;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0.1; }
+  }
+
+  .inside-left::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 15px; height: 100%;
+    background: linear-gradient(to left, rgba(0,0,0,0.06), transparent);
+    pointer-events: none;
+  }
+
+  .desktop-card .inside-right-desktop::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 15px; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.06), transparent);
+    pointer-events: none;
+  }
+
+  @media (max-width: 640px) {
+    .desktop-card { display: none; }
+    .mobile-card { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<!-- ==================== DESKTOP LAYOUT ==================== -->
+<div class="desktop-card">
+  <div class="card-container">
+    <div class="card" id="card-desktop">
+      
+      <!-- Left Inside Panel -->
+      <div class="panel inside-left">
+        <div class="polaroid">
+          <img class="polaroid-image" src="image.png" alt="Ảnh Chị Như" onerror="this.src='1.png'; this.onerror=function(){this.parentNode.style.display='none';};">
+          <div class="polaroid-caption">Chị Như xinh đẹp 💖</div>
+        </div>
+      </div>
+
+      <!-- Right Inside Panel -->
+      <div class="panel inside-right-desktop">
+        <div class="inside-header">
+          <h2 class="inside-title">Chúc Mừng Sinh Nhật! 🎉</h2>
+        </div>
+        
+        <div class="wishes-content">
+          <p class="wish-para">Chúc <b>Chị Như</b> tuổi mới luôn xinh đẹp, trẻ trung, công việc hanh thông và gặp thật nhiều may mắn, hạnh phúc trong cuộc sống nhé! 🌟🎂</p>
+        </div>
+
+        <div class="signature">Bé Pin đáng yêu 💖</div>
+
+        <div class="actions-container">
+          <button id="dodge-btn-desktop" class="action-btn dodge-btn-style">Nghỉ chơi bé Pin 🚫</button>
+          <button id="love-btn-desktop" class="action-btn love-btn-style">Cảm ơn bé Pin ❤️</button>
+        </div>
+      </div>
+
+      <!-- Front Rotating Cover -->
+      <div class="cover-page" onclick="toggleCard()">
+        <!-- Front cover face -->
+        <div class="cover-front">
+          <h1 class="cover-title">Happy Birthday</h1>
+          <h2 class="recipient-name">Chị Như ✨</h2>
+          <div class="wax-seal">
+            <span class="heart-seal">❤️</span>
+          </div>
+          <p class="click-hint">Chạm nhẹ để mở thư...</p>
+        </div>
+        <!-- Back cover face -->
+        <div class="cover-back"></div>
+      </div>
+
+    </div>
+    <div class="hint">✨ Nhấp vào dấu niêm phong màu đỏ để mở thiệp ✨</div>
+  </div>
+</div>
+
+<!-- ==================== MOBILE LAYOUT ==================== -->
+<div class="mobile-card">
+  <div class="card-container-mobile">
+    <div class="card" id="card-mobile" onclick="toggleCard()">
+      
+      <!-- Front Cover (Flipped) -->
+      <div class="cover-front-mobile">
+        <h1 class="cover-title">Happy Birthday</h1>
+        <h2 class="recipient-name">Chị Như ✨</h2>
+        <div class="wax-seal">
+          <span class="heart-seal">❤️</span>
+        </div>
+        <p class="click-hint">Chạm nhẹ để mở thư...</p>
+      </div>
+
+      <!-- Back Inside Panel -->
+      <div class="inside-mobile">
+        <div class="polaroid">
+          <img class="polaroid-image" src="image.png" alt="Ảnh Chị Như" onerror="this.src='1.png'; this.onerror=function(){this.parentNode.style.display='none';};">
+          <div class="polaroid-caption">Chị Như xinh đẹp 💖</div>
+        </div>
+
+        <div class="wishes-content" style="max-height: 160px;">
+          <p class="wish-para" style="font-size:0.85rem; margin-bottom:5px;">Chúc <b>Chị Như</b> tuổi mới luôn xinh đẹp, trẻ trung, công việc hanh thông và gặp thật nhiều may mắn, hạnh phúc trong cuộc sống nhé! ✨💖</p>
+        </div>
+
+        <div class="signature" style="font-size: 1.2rem; margin-top:0;">Bé Pin đáng yêu 💖</div>
+
+        <div class="actions-container">
+          <button id="dodge-btn-mobile" class="action-btn dodge-btn-style">Nghỉ chơi bé Pin 🚫</button>
+          <button id="love-btn-mobile" class="action-btn love-btn-style">Cảm ơn bé Pin ❤️</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="hint">✨ Chạm vào thiệp để lật mở xem ✨</div>
+  </div>
+</div>
+
+<script>
+let cardOpened = false;
+
+// 1. Create floating elements on background load
+window.addEventListener('DOMContentLoaded', () => {
+  createFloatingBg();
+  setupDodge('dodge-btn-desktop', 'inside-right-desktop');
+  setupDodge('dodge-btn-mobile', 'inside-mobile');
+  setupLove('love-btn-desktop');
+  setupLove('love-btn-mobile');
+});
+
+function createFloatingBg() {
+  const container = document.body;
+  const emojis = ['🎈', '✨', '🌸', '💖', '⭐', '🎂'];
+  for (let i = 0; i < 15; i++) {
+    const el = document.createElement('div');
+    el.className = 'floating-element';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.top = Math.random() * 100 + 'vh';
+    el.style.fontSize = (16 + Math.random() * 20) + 'px';
+    el.style.animationDuration = (6 + Math.random() * 8) + 's';
+    el.style.animationDelay = '-' + (Math.random() * 8) + 's';
+    container.appendChild(el);
+  }
+}
+
+// 2. Open / Close Card function
+function toggleCard() {
+  const isMobile = window.innerWidth <= 640;
+  const cardId = isMobile ? 'card-mobile' : 'card-desktop';
+  const card = document.getElementById(cardId);
+  card.classList.toggle('open');
+  cardOpened = card.classList.contains('open');
+
+  if (cardOpened) {
+    playChime();
+    launchConfetti(['🎉','🎊','🥳','🎈','🎂','✨'], 40);
+    document.querySelectorAll('.hint').forEach(el => el.style.display = 'none');
+  } else {
+    document.querySelectorAll('.hint').forEach(el => el.style.display = 'block');
+  }
+}
+
+// 3. Audio synthesis for greeting sound
+function playChime(isExtra = false) {
+  try {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playNote(freq, start, duration) {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = isExtra ? 'sine' : 'triangle';
+      osc.frequency.setValueAtTime(freq, start);
+      
+      gain.gain.setValueAtTime(0.12, start);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start(start);
+      osc.stop(start + duration);
+    }
+    
+    const now = audioCtx.currentTime;
+    if (!isExtra) {
+      playNote(523.25, now, 0.35);
+      playNote(659.25, now + 0.12, 0.35);
+      playNote(783.99, now + 0.24, 0.35);
+      playNote(1046.50, now + 0.36, 0.6);
+    } else {
+      playNote(659.25, now, 0.2);
+      playNote(880.00, now + 0.08, 0.2);
+      playNote(1108.73, now + 0.16, 0.2);
+      playNote(1318.51, now + 0.24, 0.5);
+    }
+  } catch (e) {
+    console.log("Web Audio blocked or unsupported", e);
+  }
+}
+
+// 4. Confetti effect
+function launchConfetti(emojis, count) {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'confetti';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.animationDuration = (2 + Math.random() * 2) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }, i * 50);
+  }
+}
+
+// 5. Love Button setup (Confetti explosion)
+function setupLove(btnId) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    playChime(true);
+    launchConfetti(['❤️', '💖', '💝', '🌸', '✨'], 30);
+    
+    btn.style.transform = 'scale(1.15)';
+    setTimeout(() => {
+      btn.style.transform = 'scale(1)';
+    }, 200);
+  });
+}
+
+// 6. Dodge Button setup (Moves away from cursor / touch)
+function setupDodge(btnId, containerClass) {
+  const btn = document.getElementById(btnId);
+  const container = document.querySelector('.' + containerClass);
+  
+  if (!btn || !container) return;
+  
+  function dodge(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+    const btnWidth = btn.offsetWidth;
+    const btnHeight = btn.offsetHeight;
+    
+    const maxX = containerWidth - btnWidth - 20;
+    const maxY = containerHeight - btnHeight - 80;
+    
+    const randomX = Math.max(15, Math.floor(Math.random() * maxX));
+    const randomY = Math.max(40, Math.floor(Math.random() * maxY));
+    
+    btn.style.position = 'absolute';
+    btn.style.left = randomX + 'px';
+    btn.style.top = randomY + 'px';
+    btn.style.zIndex = '99';
+  }
+  
+  btn.addEventListener('mouseover', dodge);
+  btn.addEventListener('touchstart', dodge);
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dodge(e);
+  });
+}
+</script>
+</body>
+</html>
