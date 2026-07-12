@@ -68,10 +68,12 @@
     position: relative;
     transform-style: preserve-3d;
     transition: transform 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Center the cover (right half) on screen when closed */
     transform: translateX(-25%) rotateY(0deg);
   }
 
   .desktop-card .card.open {
+    /* Center the full booklet on screen when open */
     transform: translateX(0) rotateY(0deg);
   }
 
@@ -81,20 +83,6 @@
     top: 0;
     background-color: #fffdf9;
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-  }
-
-  .desktop-card .inside-left {
-    width: 50%;
-    left: 0;
-    border-radius: 16px 0 0 16px;
-    border-right: 1px solid rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 1;
-    background: radial-gradient(circle at center, #ffffff 0%, #fffdf4 100%);
   }
 
   .desktop-card .inside-right-desktop {
@@ -127,6 +115,7 @@
     transform: rotateY(-180deg);
   }
 
+  /* Front and back cover faces with Z-translate separation to fix Chrome 3D z-fighting */
   .desktop-card .cover-front, .desktop-card .cover-back {
     position: absolute;
     width: 100%;
@@ -146,7 +135,7 @@
     padding: 30px;
     border: 4px double rgba(255, 215, 0, 0.6);
     box-shadow: inset 0 0 30px rgba(255,255,255,0.25);
-    transform: translateZ(1px);
+    transform: translateZ(1px); /* Push forward */
   }
 
   .desktop-card .cover-front::after {
@@ -159,7 +148,7 @@
   }
 
   .desktop-card .cover-back {
-    transform: rotateY(180deg) translateZ(1px);
+    transform: rotateY(180deg) translateZ(1px); /* Rotate and push forward */
     border-radius: 16px 0 0 16px;
     background: radial-gradient(circle at center, #ffffff 0%, #fffdf4 100%);
     box-shadow: -15px 15px 35px rgba(0,0,0,0.3);
@@ -187,6 +176,7 @@
     cursor: pointer;
   }
 
+  /* On mobile, open state flips the entire card Y by 180 degrees */
   .mobile-card .card.open {
     transform: rotateY(180deg);
   }
@@ -236,6 +226,7 @@
   }
 
   /* ---------------- GENERAL INTERIOR COMPONENTS ---------------- */
+  /* Title Font settings */
   .cover-title {
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
@@ -254,6 +245,7 @@
     margin-bottom: 25px;
   }
 
+  /* Wax seal stamp styling */
   .wax-seal {
     width: 90px;
     height: 90px;
@@ -262,7 +254,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 0 0 12px rgba(0,0,0,0.4), 0 8px 16px rgba(0,0,0,0.3);
+    box-shadow: 
+      inset 0 0 12px rgba(0,0,0,0.4),
+      0 8px 16px rgba(0,0,0,0.3);
     border: 3px solid #ff4d6d;
     cursor: pointer;
     position: relative;
@@ -298,6 +292,7 @@
     text-align: center;
   }
 
+  /* Polaroid Styling */
   .polaroid {
     background: #ffffff;
     padding: 12px 12px 35px 12px;
@@ -345,6 +340,7 @@
     font-weight: 700;
   }
 
+  /* Mobile Polaroid adjustments */
   .mobile-card .polaroid {
     width: 200px;
     padding: 10px 10px 25px 10px;
@@ -354,7 +350,11 @@
     height: 160px;
   }
 
-  .inside-header { margin-bottom: 12px; }
+  /* Text & Title Styling */
+  .inside-header {
+    margin-bottom: 12px;
+  }
+
   .inside-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.45rem;
@@ -372,7 +372,9 @@
     margin-bottom: 15px;
   }
 
-  .wishes-content::-webkit-scrollbar { width: 4px; }
+  .wishes-content::-webkit-scrollbar {
+    width: 4px;
+  }
   .wishes-content::-webkit-scrollbar-thumb {
     background-color: #ffd8a8;
     border-radius: 10px;
@@ -387,6 +389,10 @@
     font-weight: 500;
   }
 
+  .wish-para b {
+    color: #d9480f;
+  }
+
   .signature {
     font-family: 'Dancing Script', cursive;
     font-size: 1.35rem;
@@ -396,6 +402,7 @@
     font-weight: 700;
   }
 
+  /* Actions Container */
   .actions-container {
     display: flex;
     justify-content: space-around;
@@ -434,6 +441,7 @@
     transition: left 0.1s ease, top 0.1s ease, transform 0.2s ease;
   }
 
+  /* Hints */
   .hint {
     position: absolute;
     bottom: -60px;
@@ -458,6 +466,7 @@
     font-size: 0.85rem;
   }
 
+  /* Confetti */
   .confetti {
     position: fixed;
     top: -20px;
@@ -471,7 +480,8 @@
     to { transform: translateY(110vh) rotate(360deg); opacity: 0.1; }
   }
 
-  .inside-left::after {
+  /* Spine fold shadows */
+  .desktop-card .cover-back::after {
     content: '';
     position: absolute;
     top: 0; right: 0;
@@ -489,6 +499,7 @@
     pointer-events: none;
   }
 
+  /* ---------------- LAYOUT MEDIA SWITCH ---------------- */
   @media (max-width: 640px) {
     .desktop-card { display: none; }
     .mobile-card { display: block; }
@@ -504,15 +515,7 @@
   <div class="card-container">
     <div class="card" id="card-desktop">
       
-      <!-- Left Inside Panel -->
-      <div class="panel inside-left">
-        <div class="polaroid">
-          <img class="polaroid-image" src="image.png" alt="Ảnh Chị Như" onerror="this.src='1.png'; this.onerror=function(){this.parentNode.style.display='none';};">
-          <div class="polaroid-caption">Chị Như xinh đẹp 💖</div>
-        </div>
-      </div>
-
-      <!-- Right Inside Panel -->
+      <!-- Right Inside Panel (Wishes) -->
       <div class="panel inside-right-desktop">
         <div class="inside-header">
           <h2 class="inside-title">Chúc Mừng Sinh Nhật! 🎉</h2>
@@ -530,7 +533,7 @@
         </div>
       </div>
 
-      <!-- Front Rotating Cover -->
+      <!-- Front Rotating Cover (Book cover + Polaroid on back) -->
       <div class="cover-page" onclick="toggleCard()">
         <!-- Front cover face -->
         <div class="cover-front">
@@ -541,8 +544,13 @@
           </div>
           <p class="click-hint">Chạm nhẹ để mở thư...</p>
         </div>
-        <!-- Back cover face -->
-        <div class="cover-back"></div>
+        <!-- Back cover face (Holds Polaroid photo!) -->
+        <div class="cover-back">
+          <div class="polaroid">
+            <img class="polaroid-image" src="image.png" alt="Ảnh Chị Như" onerror="this.src='1.png'; this.onerror=function(){this.style.opacity='0';};">
+            <div class="polaroid-caption">Chị Như xinh đẹp 💖</div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -568,7 +576,7 @@
       <!-- Back Inside Panel -->
       <div class="inside-mobile">
         <div class="polaroid">
-          <img class="polaroid-image" src="image.png" alt="Ảnh Chị Như" onerror="this.src='1.png'; this.onerror=function(){this.parentNode.style.display='none';};">
+          <img class="polaroid-image" src="image.png" alt="Ảnh Chị Như" onerror="this.src='1.png'; this.onerror=function(){this.style.opacity='0';};">
           <div class="polaroid-caption">Chị Như xinh đẹp 💖</div>
         </div>
 
